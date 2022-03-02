@@ -2,15 +2,34 @@
 //calling required modules 
 //frameworks
 const express = require('express');
-const bodyParser = require('body-parser');
+const fs = require('fs');
+const path = require('path');
 
-//call express and bodyParser
-let app = express();
-app.use(bodyParser.urlencoded({
-    extended: true,
-}));
+// routes
+const apiRoutes = require('./Routes/apiRoutes/index.js');
+const htmlRoutes = require('./Routes/htmlRoutes/index.js')
+//call express 
+const app = express();
 
+//setting local port
+const port = 3001;
+
+//parse post incoming string or array
+app.use(express.urlencoded({ extended: true }));
+
+//parse post incoming JSON
+app.use(express.json());
+
+//Routes request handlers
+app.use(`/api`, apiRoutes);
+app.use(`/`, htmlRoutes);
+app.use(express.static(`public`));
+
+// app.get("/", (req, res) => {
+//     res.send("Hello World!");
+// })
 //Setting up port for local server
-app.listen(5000, function()
-{console.log("NoteTakerApp server is running at port 5000...")
+app.listen(port, () => {
+console.log("NoteTakerApp server is running on port ${port}");
 });
+
