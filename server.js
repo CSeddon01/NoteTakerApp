@@ -1,35 +1,22 @@
 
-//calling required modules 
-//frameworks
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
+//calling dependencies
+const express = require('express')
 
-// routes
-const apiRoutes = require('./Routes/apiRoutes/index.js');
-const htmlRoutes = require('./Routes/htmlRoutes/index.js')
-//call express 
-const app = express();
+const app = express()
+app.use(express.json())
 
-//setting local port
-const port = 3001;
+app.use(express.urlencoded({extended: true}));
 
-//parse post incoming string or array
-app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
-//parse post incoming JSON
-app.use(express.json());
+//required routes
+require("./routes/apiRoute")(app);
+require("./routes/htmRoute")(app);
 
-//Routes request handlers
-app.use(`/api`, apiRoutes);
-app.use(`/`, htmlRoutes);
-app.use(express.static(`public`));
 
-// app.get("/", (req, res) => {
-//     res.send("Hello World!");
-// })
-//Setting up port for local server
-app.listen(port, () => {
-console.log("NoteTakerApp server is running on port ${port}");
-});
-
+//starts the local server
+app.listen(process.env.PORT || 3001, () => {
+    console.log('Server Running in Port 3001')
+  })
+  
+  
