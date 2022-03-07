@@ -1,5 +1,11 @@
 ## 🌟 The Note Taker Application
 
+![App Screenshot] (https://github.com/CSeddon01/NoteTakerApp/blob/main/public/assets/Screenshot/NoteTakerAppSS.JPG)
+
+# Website     
+
+https://note-taker-app-cseddon01.herokuapp.com/
+
 # 🧐 Details 
 
 Using starter code, create a notes page that allows you to see current notes, enter new notes, and delete notes.  This application will be deloyed with Heruko.
