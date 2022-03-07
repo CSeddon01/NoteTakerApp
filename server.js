@@ -10,19 +10,20 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('/public'));
 
-//Routes used
 
+
+app.get('/notes', (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/notes.html'));
+});
+//Routes used
+console.log(__dirname);
 app.get('/api/notes', (req, res) => {
   res.sendFile(path.join(__dirname, './db/db.json'));
 });
 
-app.get('/notes', (req, res) => {
-  res.sendFile(path.join(__dirname, './public/notes.html'));
-});
 
-app.get('*' , (req, res) => {
-  res.sendFile(path.join(__dirname, './index.html'));
-});
+
+
 
 app.post('/api/notes' , (req, res) => {
   const newNote = req.body;
@@ -40,6 +41,11 @@ app.delete("/api/notes/:id", (req, res) => {
   fs.writeFileSync("./db/db.json", JSON.stringify(noteList));
   res.json(noteList);
 });
+
+app.get('*' , (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/index.html'));
+});
+
 
 //starts the local server on port 3001
 app.listen(process.env.PORT || 3001, () => {
