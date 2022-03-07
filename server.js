@@ -3,13 +3,14 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 const path = require("path");
+//app used to delete notes by id
 const uniqueId = require("uniqid");
 //Built in Middleware that is used
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-//Routes used
+//Routes used to access database 
 
 app.get("/api/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "./db/db.json"));
@@ -23,7 +24,7 @@ app.post("/api/notes", (req, res) => {
   fs.writeFileSync("./db/db.json", JSON.stringify(notes));
   res.json(notes);
 });
-
+//delete note by id
 app.delete("/api/notes/:id", (req, res) => {
   const noteId = req.params.id;
   let noteList = JSON.parse(fs.readFileSync("./db/db.json"));
@@ -32,6 +33,7 @@ app.delete("/api/notes/:id", (req, res) => {
   res.json(noteList);
 });
 
+//routes for accessing front end public information
 app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/notes.html"));
 });
