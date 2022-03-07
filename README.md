@@ -1,6 +1,6 @@
 ## 🌟 The Note Taker Application
 
-![App Screenshot] (https://github.com/CSeddon01/NoteTakerApp/blob/main/public/assets/Screenshot/NoteTakerAppSS.JPG)
+![App Screenshot](https://github.com/CSeddon01/NoteTakerApp/blob/main/public/assets/Screenshot/NoteTakerAppSS.JPG)
 
 # Website     
 
